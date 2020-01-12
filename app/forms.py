@@ -41,23 +41,17 @@ class LoginForm(Form):
     submit = SubmitField('Log In')
 
 
-
-
 class ProfileForm(Form):
     """User Profile Form."""
-
                                     
     preference_gender = StringField('Gender_preference',
                              validators=[DataRequired(message='Please enter your gender preference for matchup (Male, Female, Both)')])
                                          
     
-    interests = StringField('Gender_preference',
+    interests = StringField('Interests',
                     validators=[DataRequired(message='Please enter your interests')])
 
 
     submit = SubmitField('Register')
     
-    def __init__(self, preference_gender, interests):
-        self.preference_gender = preference_gender
-        self.interests = interests
 

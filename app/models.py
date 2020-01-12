@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 class User(UserMixin, db.Model):
     """Model for user accounts."""
 
-    __tablename__ = 'users'
+    __tablename__ = 'user'
 
     id = db.Column(db.Integer,
                    primary_key=True)
@@ -39,10 +39,10 @@ class User(UserMixin, db.Model):
 
 
 
-class Profile(db.Model):
+class Profile(UserMixin, db.Model):
     """Model for user profile."""
     
-    __tablename__ = "youth"
+    __tablename__ = 'user_profile'
 
     email = db.Column(db.String(40),
                       unique=True,

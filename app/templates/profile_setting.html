@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block pagestyles %}
+    <link href="{{ url_for('static', filename='dist/css/account.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+  <div class="formwrapper">
+    <form method=post>
+      <div class="logo">
+        <img src="{{ url_for('static', filename='dist/img/logo.png') }}">
+      </div>
+      {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+      {% endfor %}
+      <h1>Profile Setting</h1>
+      <div class="Match-up Gender Preference">
+        {{ form.preference_gender.label }}
+        {{ form.preference_gender(placeholder='male/female/both') }}
+        {% if form.preference_gender.errors %}
+          <ul class="errors">
+            {% for error in form.preference_gender.errors %}<li>{{ error }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+      <div class="interests">
+        {{ form.interests.label }}
+        {{ form.interests(placeholder='Marketing;Design;Golf') }}
+        {% if form.interests.errors %}
+          <ul class="errors">
+            {% for error in form.interests.errors %}<li>{{ error }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+
+      <div class="submitbutton">
+        <input id="submit" type="submit" value="Submit">
+      </div>
+    </form>
+  </div>
+{% endblock %}
