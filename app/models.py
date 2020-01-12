@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 class User(UserMixin, db.Model):
     """Model for user accounts."""
 
-    __tablename__ = 'user'
+    __tablename__ = 'users'
 
     id = db.Column(db.Integer,
                    primary_key=True)
@@ -24,7 +24,7 @@ class User(UserMixin, db.Model):
                         index=False,
                         unique=False,
                         nullable=False)
-    gender = db.Column(db.DateTime(60),
+    gender = db.Column(db.String(50),
                         nullable=False,
                         unique=False
                         )
