@@ -11,5 +11,8 @@
     {% if current_user.is_authenticated %}
     <p>Hi {{ current_user.name }}!</p>
     <a href="{{ url_for('auth_pages.logout_page') }}">Log out</a>
+    
+    
+        
   {% endif %}
 {% endblock %}
