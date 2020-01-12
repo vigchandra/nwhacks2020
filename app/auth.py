@@ -91,7 +91,7 @@ def signup_page():
             return redirect(url_for('auth_pages.signup_page'))
     # GET: Serve Sign-up page
     return render_template('/signup.html',
-                           title='Create an Account | Flask-Login Tutorial.',
+                           title='Create an Account | Youth Engage Senior',
                            form=SignupForm(),
                            template='signup-page',
                            body="Sign up for a user account.")
