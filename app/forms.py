@@ -27,6 +27,8 @@ class SignupForm(Form):
     birthday = DateField('Enter Your Birthday',
                         validators=[DataRequired(message='Please enter your birthday.')])
 
+    gender = StringField('Enter Your Gender',
+                        validators=[DataRequired(message='What pronoun do you go by?')])
                           
     submit = SubmitField('Register')
     

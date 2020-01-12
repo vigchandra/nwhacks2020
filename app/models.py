@@ -24,6 +24,11 @@ class User(UserMixin, db.Model):
                         index=False,
                         unique=False,
                         nullable=False)
+    gender = db.Column(db.DateTime(60),
+                        nullable=False,
+                        unique=False
+                        )
+    
     
     def set_password(self, password):
         """Create hashed password."""
