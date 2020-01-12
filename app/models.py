@@ -49,7 +49,7 @@ class Profile(UserMixin, db.Model):
                       nullable=False,
                       primary_key=True)
     
-    preference_gender = db.Column(db.String(5),
+    preference_gender = db.Column(db.String(6),
                                     unique=False,
                                     nullable=False)
     
