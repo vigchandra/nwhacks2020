@@ -1,5 +1,5 @@
 """Routes for user authentication."""
-from flask import redirect, render_template, flash, Blueprint, request, url_for
+from flask import redirect, render_template, flash, Blueprint, request, url_for, session
 from flask_login import login_required, logout_user, current_user, login_user
 from flask import current_app as app
 from werkzeug.security import generate_password_hash
@@ -34,6 +34,8 @@ def login_page():
                 if user.check_password(password=password):
                     login_user(user)
                     next = request.args.get('next')
+                    # Save session
+                    session["email"] = email
                     return redirect(next or url_for('main_pages.dashboard'))
         flash('Invalid username/password combination')
         return redirect(url_for('auth_pages.login_page'))
@@ -73,6 +75,8 @@ def signup_page():
                 db.session.add(user)
                 db.session.commit()
 
+                # Save session
+                session["email"] = email
                 
                 login_user(user)
                 # Direct to setting profile
