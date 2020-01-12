@@ -3,16 +3,17 @@ from flask import redirect, render_template, flash, Blueprint, request, url_for
 from flask_login import login_required, logout_user, current_user, login_user
 from flask import current_app as app
 from werkzeug.security import generate_password_hash
+from .assets import compile_auth_assets
 from .forms import LoginForm, SignupForm
 from .models import db, User
-from .import login_manager
+from . import login_manager
 
 
 # Blueprint Configuration
 auth_pages = Blueprint('auth_pages', __name__,
                     template_folder='templates',
                     static_folder='static')
-
+compile_auth_assets(app)
 
 @auth_pages.route('/login', methods=['GET', 'POST'])
 def login_page():
@@ -46,26 +47,37 @@ def login_page():
 
 @auth_pages.route('/signup', methods=['GET', 'POST'])
 def signup_page():
+
     """User sign-up page."""
     signup_form = SignupForm(request.form)
+
     # POST: Sign user in
     if request.method == 'POST':
+        
         if signup_form.validate():
+   
             # Get Form Fields
             name = request.form.get('name')
             email = request.form.get('email')
             password = request.form.get('password')
-            website = request.form.get('website')
+            birthday = request.form.get('birthday')
+            
+            # Check if user exists
             existing_user = User.query.filter_by(email=email).first()
             if existing_user is None:
                 user = User(name=name,
                             email=email,
                             password=generate_password_hash(password, method='sha256'),
-                            website=website)
+                            birthday=birthday)
+              
                 db.session.add(user)
                 db.session.commit()
+
+                
                 login_user(user)
-                return redirect(url_for('main_pages.dashboard'))
+                # Direct to setting profile
+                return redirect(url_for('main_pages.profile_setting'))
+                
             flash('A user already exists with that email address.')
             return redirect(url_for('auth_pages.signup_page'))
     # GET: Serve Sign-up page

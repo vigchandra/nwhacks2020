@@ -3,11 +3,10 @@ from . import db
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
-
 class User(UserMixin, db.Model):
     """Model for user accounts."""
 
-    __tablename__ = 'flasklogin-users'
+    __tablename__ = 'users'
 
     id = db.Column(db.Integer,
                    primary_key=True)
@@ -21,19 +20,11 @@ class User(UserMixin, db.Model):
                          primary_key=False,
                          unique=False,
                          nullable=False)
-    website = db.Column(db.String(60),
+    birthday = db.Column(db.DateTime(60),
                         index=False,
                         unique=False,
-                        nullable=True)
-    created_on = db.Column(db.DateTime,
-                           index=False,
-                           unique=False,
-                           nullable=True)
-    last_login = db.Column(db.DateTime,
-                           index=False,
-                           unique=False,
-                           nullable=True)
-
+                        nullable=False)
+    
     def set_password(self, password):
         """Create hashed password."""
         self.password = generate_password_hash(password, method='sha256')
@@ -44,3 +35,31 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
+
+
+
+
+class Profile(db.Model):
+    """Model for user profile."""
+    
+    __tablename__ = "youth"
+
+    email = db.Column(db.String(40),
+                      unique=True,
+                      nullable=False,
+                      primary_key=True)
+    
+    preference_gender = db.Column(db.String(5),
+                                    unique=False,
+                                    nullable=False)
+    
+    interests = db.Column(db.String(100),
+                         unique=False,
+                        nullable=True)
+    
+    client_type = db.Column(db.String(5),
+                            unique=False,
+                            nullable=False)
+                            
+    def __repr__(self):
+        return 'User {}'.format(self.username)
