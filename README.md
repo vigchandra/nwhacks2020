@@ -12,7 +12,9 @@ This is an app to connect youth and seniors to build meaningful intergenerationa
 
 A screenshot of our envisioned web application landing page is as shown.
 
-![Landing Page](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/000/909/293/datas/gallery.jpg)
+<p align="center">
+  <img src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/000/909/293/datas/gallery.jpg">
+</p>
 
 The app mockup sketch can be found here:
 
@@ -21,6 +23,10 @@ https://www.figma.com/file/J3ZQmfn9qLOK5YpWqdKsdi/NWHACKS2020?node-id=0%3A1
 The deployed app prototype can be found here:
 
 https://nwhacks2020-yes.azurewebsites.net/login
+
+Our NWHacks Development project folder can be found here:
+
+https://devpost.com/software/youth-engaging-seniors
 
 
 
