@@ -62,7 +62,15 @@
           </ul>
         {% endif %}
       </div>
-
+      <div class="gender">
+        {{ form.gender.label }}
+        {{ form.gender(placeholder='he/him/her/she/they/...') }}
+        {% if form.gender.errors %}
+          <ul class="errors">
+            {% for error in form.gender.errors %}<li>{{ error }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+      </div>
       <div class="submitbutton">
         <input id="submit" type="submit" value="Submit">
       </div>

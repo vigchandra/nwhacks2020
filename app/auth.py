@@ -63,6 +63,7 @@ def signup_page():
             email = request.form.get('email')
             password = request.form.get('password')
             birthday = request.form.get('birthday')
+            gender = request.form.get('gender')
             
             # Check if user exists
             existing_user = User.query.filter_by(email=email).first()
@@ -70,7 +71,7 @@ def signup_page():
                 user = User(name=name,
                             email=email,
                             password=generate_password_hash(password, method='sha256'),
-                            birthday=birthday)
+                            birthday=birthday, gender=gender)
               
                 db.session.add(user)
                 db.session.commit()
