@@ -66,3 +66,9 @@ def profile_view():
                             current_user=current_user,
                             body="Email:{} \n Client_type:{}".format(prof.email, prof.client_type))
  
+
+@main_pages.route('/select_profile_pic', methods=['GET','POST'])
+@login_required
+def upload_profile_pic():
+    """Upload Profile Picture"""
+    return render_template("select_profile_pic.html")

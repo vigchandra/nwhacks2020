@@ -7,6 +7,7 @@ from .assets import compile_auth_assets
 from .forms import LoginForm, SignupForm
 from .models import db, User
 from . import login_manager
+from datetime import datetime
 
 
 # Blueprint Configuration
@@ -68,10 +69,13 @@ def signup_page():
             # Check if user exists
             existing_user = User.query.filter_by(email=email).first()
             if existing_user is None:
+                print(type(birthday))
+                type(birthday)
                 user = User(name=name,
                             email=email,
                             password=generate_password_hash(password, method='sha256'),
-                            birthday=birthday, gender=gender)
+                            birthday=birthday,
+                            gender=gender)
               
                 db.session.add(user)
                 db.session.commit()
